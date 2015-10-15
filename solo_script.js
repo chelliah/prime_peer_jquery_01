@@ -31,12 +31,8 @@ position = document.getElementById('content');
 $(document).ready(function(){
 
   $("#content").on('click', ".clickButton", function(){
-    for(employeeNum in array){
-      employee = array[employeeNum];
-      // console.log(employee);
-      console.log(employee.employeeName + ", " + employee.bonus + ", " + employee.adjustedSalary + ", " + employee.totalBonus);
-
-    }
+    // console.log($(this).prev().text());
+    $(this).parent().remove();
   });
 
   for (employeeNum in array){
@@ -44,9 +40,11 @@ $(document).ready(function(){
     array[employeeNum] = employee;
     $('#content').append("<div class='employeeContainer'></div>");
     var $el = $("#content").children().last();
-    $el.append(employee.employeeName + ", " + employee.bonus + ", " + employee.adjustedSalary + ", " + employee.totalBonus);
-    $el.append("<button class='clickButton'>Click Me</button>");
+    $el.append("<p class='employeeEntry'>"+ employee.employeeName + ", " + employee.bonus + ", " + employee.adjustedSalary + ", " + employee.totalBonus + "</p>");
+    $el.append("<button class='clickButton'>Click Me</button>"); 
   }
+  $(".employeeEntry").css({"display":"inline-block", "padding-right": "5px"});
+  $(".clickButton").css({"display":"inline-block"});
   
 });
 
