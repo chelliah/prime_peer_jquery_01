@@ -17,38 +17,6 @@ var newEl, newText, position;
 //Capture the position of insertion into the DOM
 position = document.getElementById('content');
 
-
-// var automate =  {
-//   processEmployee: function (employee){
-//     employee = calculateSTI(employee);
-//     newEl = document.createElement('li');
-//     newText = document.createTextNode(employee.employeeName + ", " + employee.bonus + ", " + employee.adjustedSalary + ", " + employee.totalBonus);
-//     newEl.appendChild(newText);
-//     position.appendChild(newEl);
-//   }
-// };
-
-$(document).ready(function(){
-
-  $("#content").on('click', ".clickButton", function(){
-    // console.log($(this).prev().text());
-    $(this).parent().remove();
-  });
-
-  for (employeeNum in array){
-    employee = calculateSTI(array[employeeNum]);
-    array[employeeNum] = employee;
-    $('#content').append("<div class='employeeContainer'></div>");
-    var $el = $("#content").children().last();
-    $el.append("<p class='employeeEntry'>"+ employee.employeeName + ", " + employee.bonus + ", " + employee.adjustedSalary + ", " + employee.totalBonus + "</p>");
-    $el.append("<button class='clickButton'>Click Me</button>"); 
-  }
-  $(".employeeEntry").css({"display":"inline-block", "padding-right": "5px"});
-  $(".clickButton").css({"display":"inline-block"});
-  
-});
-
-
 function employee(name, employeeNumber, baseSalary, reviewScore){
   this.employeeName = name;
   this.employeeNumber = employeeNumber;
@@ -117,4 +85,23 @@ function getIncomeAdjustment(salary){
   return incomeAdjustment;
 }
 
+$(document).ready(function(){
+
+  $("#content").on('click', ".clickButton", function(){
+    console.log($(this).prev().text());
+    $(this).parent().remove();
+  });
+
+  for (employeeNum in array){
+    employee = calculateSTI(array[employeeNum]);
+    array[employeeNum] = employee;
+    $('#content').append("<div class='employeeContainer'></div>");
+    var $el = $("#content").children().last();
+    $el.append("<p class='employeeEntry'>"+ employee.employeeName + ", " + employee.bonus + ", " + employee.adjustedSalary + ", " + employee.totalBonus + "</p>");
+    $el.append("<button class='clickButton'>Click Me</button>"); 
+  }
+  $(".employeeEntry").css({"display":"inline-block", "padding-right": "5px"});
+  $(".clickButton").css({"display":"inline-block"});
+  
+});
 
