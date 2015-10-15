@@ -1,15 +1,10 @@
-// ! ! !
-// Three Bugs
-
-
-
+// jQuery Challenge
 var atticus = new employee("Atticus", "2405", "47000", 3);
 var jem = new employee("Jem", "62347", "63500", 4);
 var boo = new employee("Boo", "11435", "54000", 3);
 var scout = new employee("Scout", "6243", "74750", 5);
 
 var array = [atticus,jem,boo,scout];
-
 
 //Create variables used to write to the DOM
 var newEl, newText, position;
@@ -85,13 +80,14 @@ function getIncomeAdjustment(salary){
   return incomeAdjustment;
 }
 
-$(document).ready(function(){
-
-  $("#content").on('click', ".clickButton", function(){
+function setClick(){
+    $("#content").on('click', ".clickButton", function(){
     console.log($(this).prev().text());
     $(this).parent().remove();
   });
+}
 
+function enable(){
   for (employeeNum in array){
     employee = calculateSTI(array[employeeNum]);
     array[employeeNum] = employee;
@@ -102,6 +98,11 @@ $(document).ready(function(){
   }
   $(".employeeEntry").css({"display":"inline-block", "padding-right": "5px"});
   $(".clickButton").css({"display":"inline-block"});
-  
+  // $(".employeeContainer").css({"display":"inline-block"});
+}
+
+$(document).ready(function(){
+  setClick();
+  enable();  
 });
 
